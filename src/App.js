@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{Component} from 'react';
+import './css/App.css';
+import Header from './components/Header'
+import Main from './components/Main'
+import Footer from './components/Footer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+// to run this app, type    yarn dev   in the console.  this command will start sass and the react dev environment
+
+class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      count:0
+    }
+  }
+
+  incrementCount = () => {
+    const newCount = this.state.count + 1
+    this.setState({ count: newCount})
+  }
+
+  // header and footer are functional components.  this component and main are class based.
+  render(){
+    return (
+      <div className="App">
+        <Header />
+        <Main count={this.state.count} incrementCount={this.incrementCount} />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
